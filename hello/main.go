@@ -2,6 +2,7 @@ package hello
 
 import "fmt"
 
+// SayHello will send hello to channel and print the value received from the channel
 func SayHello() {
 	ch := make(chan string)
 	msg := "hello"
