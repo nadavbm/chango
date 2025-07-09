@@ -44,7 +44,6 @@ go run main.go -pattern=workerpool -workers=10
 
 ### Patterns
 
-|----------:|-------:|
 | Pattern	| Usage  |
 |-----------|-------|
 | Singleton |	Shared resources (e.g., config, DB) |
