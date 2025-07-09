@@ -45,13 +45,13 @@ go run main.go -pattern=workerpool -workers=10
 ### Patterns
 
 | Pattern	| Usage  |
-|-----------|-------|
+|-----------|--------|
 | Singleton |	Shared resources (e.g., config, DB) |
 | Factory	| Object creation logic |
 | Decorator | Adding functionality dynamically |
-| Observer |Event-driven systems |
-| Strategy | Selecting algorithms dynamically |
-| Adapter | Bridging incompatible interfaces |
+| Observer  | Event-driven systems |
+| Strategy  | Selecting algorithms dynamically |
+| Adapter   | Bridging incompatible interfaces |
 | Builder	| Building complex objects |
 | Chain of Responsibility	| Middleware or request handlers |
 | Command	| Queues, undo-redo functionality |

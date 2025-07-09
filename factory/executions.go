@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/nadavbm/chango/decorator"
+	"github.com/nadavbm/chango/fanio"
 	"github.com/nadavbm/chango/hello"
 	"github.com/nadavbm/chango/messaging"
 	"github.com/nadavbm/chango/observer"
@@ -50,6 +51,15 @@ func (m WorkerPool) Execute() {
 	workerpool.WorkInSupermarket(m.logger, m.config)
 }
 
+type FanOutFanIn struct {
+	logger decorator.Logger
+	config *singleton.Config
+}
+
+func (m FanOutFanIn) Execute() {
+	fanio.MathClass(m.logger, m.config)
+}
+
 func ExecutionFactory(logger decorator.Logger, config *singleton.Config, image observer.Image, pattern string) Execution {
 	switch pattern {
 	case "hello":
@@ -66,6 +76,11 @@ func ExecutionFactory(logger decorator.Logger, config *singleton.Config, image o
 		}
 	case "workerpool":
 		return WorkerPool{
+			logger: logger,
+			config: config,
+		}
+	case "fanio":
+		return FanOutFanIn{
 			logger: logger,
 			config: config,
 		}
