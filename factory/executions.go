@@ -8,6 +8,7 @@ import (
 	"github.com/nadavbm/chango/messaging"
 	"github.com/nadavbm/chango/observer"
 	"github.com/nadavbm/chango/singleton"
+	"github.com/nadavbm/chango/workerpool"
 )
 
 type Execution interface {
@@ -40,6 +41,15 @@ func (m Messaging) Execute() {
 	messaging.SendReceive(m.logger, m.config)
 }
 
+type WorkerPool struct {
+	logger decorator.Logger
+	config *singleton.Config
+}
+
+func (m WorkerPool) Execute() {
+	workerpool.WorkInSupermarket(m.logger, m.config)
+}
+
 func ExecutionFactory(logger decorator.Logger, config *singleton.Config, image observer.Image, pattern string) Execution {
 	switch pattern {
 	case "hello":
@@ -51,6 +61,11 @@ func ExecutionFactory(logger decorator.Logger, config *singleton.Config, image o
 		}
 	case "messaging":
 		return Messaging{
+			logger: logger,
+			config: config,
+		}
+	case "workerpool":
+		return WorkerPool{
 			logger: logger,
 			config: config,
 		}
