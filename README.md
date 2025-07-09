@@ -42,6 +42,12 @@ go run main.go -pattern=observer -name="etzba/etz" -tag="development" -sha="sha2
 go run main.go -pattern=workerpool -workers=10
 ```
 
+#### fan-out, fan-in
+
+```sh
+go run main.go -pattern=fanio -workers=10
+```
+
 ### Patterns
 
 | Pattern	| Usage  |
