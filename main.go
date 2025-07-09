@@ -1,11 +1,10 @@
 package main
 
 import (
-	"github.com/nadavbm/chango/hello"
-	"github.com/nadavbm/chango/topics"
+	"github.com/nadavbm/chango/cmd"
 )
 
 func main() {
-	hello.SayHello()
-	topics.SendReceiveTopics()
+	cmd.ParseCommandArgs()
+	cmd.Execute()
 }
