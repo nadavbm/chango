@@ -8,6 +8,7 @@ import (
 	"github.com/nadavbm/chango/hello"
 	"github.com/nadavbm/chango/messaging"
 	"github.com/nadavbm/chango/observer"
+	"github.com/nadavbm/chango/pipeline"
 	"github.com/nadavbm/chango/singleton"
 	"github.com/nadavbm/chango/workerpool"
 )
@@ -60,6 +61,13 @@ func (m FanOutFanIn) Execute() {
 	fanio.MathClass(m.logger, m.config)
 }
 
+type PipeLine struct {
+}
+
+func (m PipeLine) Execute() {
+	pipeline.LuckySupermarket()
+}
+
 func ExecutionFactory(logger decorator.Logger, config *singleton.Config, image observer.Image, pattern string) Execution {
 	switch pattern {
 	case "hello":
@@ -84,6 +92,8 @@ func ExecutionFactory(logger decorator.Logger, config *singleton.Config, image o
 			logger: logger,
 			config: config,
 		}
+	case "pipeline":
+		return PipeLine{}
 	}
 	fmt.Println("Choose relevant pattern by using -pattern=<pattern_name>. Details in README.md")
 	return nil
