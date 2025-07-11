@@ -10,6 +10,7 @@ import (
 	"github.com/nadavbm/chango/observer"
 	"github.com/nadavbm/chango/pipeline"
 	"github.com/nadavbm/chango/pubsub"
+	"github.com/nadavbm/chango/repository"
 	"github.com/nadavbm/chango/singleton"
 	"github.com/nadavbm/chango/workerpool"
 )
@@ -62,6 +63,15 @@ func (m FanOutFanIn) Execute() {
 	fanio.MathClass(m.logger, m.config)
 }
 
+type Repository struct {
+	logger decorator.Logger
+	config *singleton.Config
+}
+
+func (m Repository) Execute() {
+	repository.DynamicPhoneBook(m.logger, m.config)
+}
+
 type PipeLine struct {
 }
 
@@ -97,6 +107,11 @@ func ExecutionFactory(logger decorator.Logger, config *singleton.Config, image o
 		}
 	case "fanio":
 		return FanOutFanIn{
+			logger: logger,
+			config: config,
+		}
+	case "repository":
+		return Repository{
 			logger: logger,
 			config: config,
 		}
