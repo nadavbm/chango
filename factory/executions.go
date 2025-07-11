@@ -9,6 +9,7 @@ import (
 	"github.com/nadavbm/chango/messaging"
 	"github.com/nadavbm/chango/observer"
 	"github.com/nadavbm/chango/pipeline"
+	"github.com/nadavbm/chango/pubsub"
 	"github.com/nadavbm/chango/singleton"
 	"github.com/nadavbm/chango/workerpool"
 )
@@ -68,6 +69,13 @@ func (m PipeLine) Execute() {
 	pipeline.LuckySupermarket()
 }
 
+type PubSub struct {
+}
+
+func (m PubSub) Execute() {
+	pubsub.Lottery()
+}
+
 func ExecutionFactory(logger decorator.Logger, config *singleton.Config, image observer.Image, pattern string) Execution {
 	switch pattern {
 	case "hello":
@@ -94,6 +102,8 @@ func ExecutionFactory(logger decorator.Logger, config *singleton.Config, image o
 		}
 	case "pipeline":
 		return PipeLine{}
+	case "pubsub":
+		return PubSub{}
 	}
 	fmt.Println("Choose relevant pattern by using -pattern=<pattern_name>. Details in README.md")
 	return nil
