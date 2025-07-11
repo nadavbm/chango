@@ -48,19 +48,19 @@ go run main.go -pattern=workerpool -workers=10
 go run main.go -pattern=fanio -workers=10
 ```
 
-### repository
+#### repository
 
 ```sh
 go run main.go -pattern=repository -duration=10s
 ```
 
-### pubsub
+#### pubsub
 
 ```sh
 go run main.go -pattern=pubsub
 ```
 
-### pipeline
+#### pipeline
 
 ```sh
 go run main.go -pattern=pipeline
